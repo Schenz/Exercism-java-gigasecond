@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 class Gigasecond {
 
@@ -9,7 +8,7 @@ class Gigasecond {
     private LocalDateTime localDateTime;
 
     Gigasecond(LocalDate birthDate) {
-        this.localDateTime = addSeconds(birthDate.atStartOfDay(), SECONDS);
+        this(birthDate.atStartOfDay());
     }
 
     Gigasecond(LocalDateTime birthDateTime) {
@@ -17,7 +16,7 @@ class Gigasecond {
     }
 
     LocalDateTime addSeconds(LocalDateTime birthDate, long seconds) {
-        return birthDate.plus(seconds, ChronoUnit.SECONDS);
+        return birthDate.plusSeconds(seconds);
     }
 
     LocalDateTime getDate() {
