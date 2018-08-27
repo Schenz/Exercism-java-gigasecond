@@ -4,16 +4,20 @@ import java.time.temporal.ChronoUnit;
 
 class Gigasecond {
 
+    static final long SECONDS = 1_000_000_000;
+
     private LocalDateTime localDateTime;
 
     Gigasecond(LocalDate birthDate) {
-        this.localDateTime = LocalDateTime
-                .of(birthDate.getYear(), birthDate.getMonth(), birthDate.getDayOfMonth(), 0, 0)
-                .plus(1000000000, ChronoUnit.SECONDS);
+        this.localDateTime = addSeconds(birthDate.atStartOfDay(), SECONDS);
     }
 
     Gigasecond(LocalDateTime birthDateTime) {
-        this.localDateTime = birthDateTime.plus(1000000000, ChronoUnit.SECONDS);
+        this.localDateTime = addSeconds(birthDateTime, SECONDS);
+    }
+
+    LocalDateTime addSeconds(LocalDateTime birthDate, long seconds) {
+        return birthDate.plus(seconds, ChronoUnit.SECONDS);
     }
 
     LocalDateTime getDate() {
